@@ -13,9 +13,9 @@ export default function Invofest() {
   }, []);
 
   const speakers = [
-    { id: 1, name: "Lhuqita Fazry", topic: "Mobile Development", job: "Developer, Founder Rumah Coding Indonesia", imageUrl: "assets/workshop/workshop mobile.png" },
-    { id: 2, name: "M. Dendi Purwanto", topic: "Artificial Intelligence", job: "Software Engineer, PT. Mayar Kernel Supernova", imageUrl: "assets/workshop/workshop AI.png" },
-    { id: 3, name: "Danang Avan M", topic: "Cyber Security", job: "Security Analyst, Founder | Contributor TegalSec", imageUrl: "assets/workshop/talkshow cyber.png" }
+    { id: 1, name: "Lhuqita Fazry", topic: "Mobile Development", job: "Developer, Founder Rumah Coding Indonesia", imageUrl: "/assets/workshop/workshop mobile.png" },
+    { id: 2, name: "M. Dendi Purwanto", topic: "Artificial Intelligence", job: "Software Engineer, PT. Mayar Kernel Supernova", imageUrl: "/assets/workshop/workshop AI.png" },
+    { id: 3, name: "Danang Avan M", topic: "Cyber Security", job: "Security Analyst, Founder | Contributor TegalSec", imageUrl: "/assets/workshop/talkshow cyber.png" }
   ];
 
   const schedules = [
