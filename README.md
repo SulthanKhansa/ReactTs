@@ -1,73 +1,21 @@
-# React + TypeScript + Vite
+# Project Pemrograman Web 2 - React & TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repo ini berisi kumpulan latihan dari Sesi Pertemuan
 
-Currently, two official plugins are available:
+## Preview Tugas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Pertemuan 2: IT Workshop (Landing Page)
+![IT Workshop](./src/pertemuan-2/pertemuan-2.png)
 
-## React Compiler
+### Pertemuan 3: Form Registrasi (Atomic Design)
+![Form Registrasi](./src/pertemuan-3/pertemuan-3.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Daftar Isi
+- **Pertemuan 1**: Dasar-dasar TypeScript.
+- **Pertemuan 2**: Latihan membuat Landing Page Workshop menggunakan React.
+- **Pertemuan 3**: Latihan validasi form dengan Zod dan struktur komponen Atomic Design.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Cara Inisialisasi
+1. Pastikan sudah install Node.js.
+2. Jalankan `npm install`.
+3. Jalankan `npm run dev` untuk melihat hasilnya di browser.

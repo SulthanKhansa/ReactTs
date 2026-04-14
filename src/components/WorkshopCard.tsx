@@ -17,7 +17,6 @@ export const WorkshopCard = ({
   time, 
   location 
 }: WorkshopCardProps) => {
-  // Mengambil inisial speaker untuk avatar
   const initials = speaker
     .split(' ')
     .map(n => n[0])
