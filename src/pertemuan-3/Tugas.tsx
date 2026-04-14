@@ -32,7 +32,7 @@ export default function Tugas() {
         resolver: zodResolver(schema),
     });
 
-    const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const onSubmit: SubmitHandler<FormData> = async () => {
         setIsLoading(true);
         
         await new Promise((resolve) => setTimeout(resolve, 1500));

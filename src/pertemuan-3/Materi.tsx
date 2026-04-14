@@ -23,7 +23,7 @@ export default function Login() {
         resolver: zodResolver(schema),
     });
 
-    const onSubmit: SubmitHandler<FormData> = (data) => {
+    const onSubmit: SubmitHandler<FormData> = () => {
         alert("Login Berhasil!");
     };
 
