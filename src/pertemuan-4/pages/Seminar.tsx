@@ -3,7 +3,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Hero } from '../../components/Hero';
 import { SpeakerCard } from '../../components/SpeakerCard';
-import { ScheduleCard } from '../../components/ScheduleCard';
 import { FaqItem } from '../../components/FaqItem';
 
 export default function Seminar() {
@@ -28,16 +27,7 @@ export default function Seminar() {
     },
   ];
 
-  const schedules = [
-    {
-      id: 1,
-      topic: "Cloud Infrastructure & Data Management",
-      date: "Kamis, 24 Oktober 2025",
-      time: "08.00 WIB - 15.00 WIB",
-      location: "Aula Kampus 1 Universitas Harkat Negeri",
-      svgIcon: <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="inline text-3xl text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
-    }
-  ];
+  /* schedules removed */
 
   const faqs1 = [
     { id: 1, question: "Apa itu INVOFEST?", answer: "Invofest (Informatics Vocational Festival) adalah festival tahunan yang diakan oleh program studi sarjana terapan teknik informatika Universitas Harkat Negeri, yang bertujuan untuk menginspirasi dan memberdayakan generasi muda Indonesia dalam menghadapi era digital." },

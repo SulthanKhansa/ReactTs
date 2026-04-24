@@ -3,7 +3,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Hero } from '../../components/Hero';
 import { SpeakerCard } from '../../components/SpeakerCard';
-import { ScheduleCard } from '../../components/ScheduleCard';
 import { FaqItem } from '../../components/FaqItem';
 
 export default function Talkshow() {
@@ -18,16 +17,7 @@ export default function Talkshow() {
     { id: 4, name: 'Bayu Adi Prasetiyo', topic: 'Software Engineer', job: 'KOMPAS.ID', imageUrl: '/assets/talkshow/talkshow bayu.png' },
   ];
 
-  const schedules = [
-    {
-      id: 1,
-      topic: "Tech & Innovation",
-      date: "Senin, 21 Oktober 2025",
-      time: "09.00 WIB - 12.00 WIB",
-      location: "Aula Kampus 1 Universitas Harkat Negeri",
-      svgIcon: <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="inline text-3xl text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path></svg>
-    }
-  ];
+  /* schedules removed */
 
   const faqs1 = [
     { id: 1, question: "Apa itu INVOFEST?", answer: "Invofest (Informatics Vocational Festival) adalah festival tahunan yang diakan oleh program studi sarjana terapan teknik informatika Universitas Harkat Negeri, yang bertujuan untuk menginspirasi dan memberdayakan generasi muda Indonesia dalam menghadapi era digital." },

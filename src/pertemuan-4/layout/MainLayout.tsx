@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Home, Trophy, UserCircle, Monitor, Mic, Globe, Play, User } from 'lucide-react';
+import { Home, Trophy, UserCircle, Monitor, Mic, User } from 'lucide-react';
 
 interface MainLayoutProps {
   children: ReactNode;

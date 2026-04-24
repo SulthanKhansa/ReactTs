@@ -60,7 +60,12 @@ export default function Invofest() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
+      <Hero 
+        title="IT Workshop" 
+        subtitle="AI for a Sustainable Future" 
+        description="Workshop didesain khusus untuk Generasi Z menghadapi tantangan keberlanjutan global." 
+        mascotSrc="/assets/Maskot-Workshop.png" 
+      />
 
       {/* TENTANG IT WORKSHOP */}
       <div className="bg-invofest_secondary w-full h-fit relative">
