@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen">
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] flex gap-1 bg-white/80 backdrop-blur-sm p-1.5 rounded-full shadow-xl border border-slate-200 overflow-x-auto max-w-[95vw] sm:max-w-fit no-scrollbar">
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] flex gap-1 bg-white/95 backdrop-blur-md p-1.5 rounded-full shadow-2xl border border-slate-200 overflow-x-auto max-w-[95vw] sm:max-w-fit no-scrollbar">
         {meetings.length === 0 ? (
           <span className="px-3 py-1 text-xs text-slate-400">Belum ada folder...</span>
         ) : (
@@ -52,7 +52,12 @@ function App() {
 
       <main className="animate-in fade-in duration-500 pb-24">
         {CurrentPage ? (
-          <CurrentPage />
+          <CurrentPage
+            onNavigate={(name: string) => {
+              const target = meetings.find(m => m.name.toLowerCase() === name.toLowerCase());
+              if (target) setActiveKey(target.key);
+            }}
+          />
         ) : (
           <div className="min-h-screen flex items-center justify-center bg-slate-50">
             <div className="text-center">

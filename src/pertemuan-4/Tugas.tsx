@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MainLayout from './layout/MainLayout';
 import Beranda from './pages/Beranda';
 import Competition from './pages/Competition';
@@ -10,10 +10,14 @@ import P4Materi from './Materi'; // Reusing Auth logic for 'profile' view
 export default function P4Tugas() {
   const [activePage, setActivePage] = useState<string>('beranda');
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activePage]);
+
   const renderContent = () => {
     switch (activePage) {
       case 'beranda':
-        return <Beranda />;
+        return <Beranda onNavigate={(page) => setActivePage(page.toLowerCase())} />;
       case 'competition':
         return <Competition />;
       case 'seminar':

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Home, Trophy, UserCircle, Monitor, Mic, Globe, Play, User } from 'lucide-react';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -8,110 +9,110 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children, activePage, onPageChange }: MainLayoutProps) {
   const menuItems = [
-    { id: 'beranda', label: 'Beranda' },
-    { id: 'competition', label: 'Competition' },
-    { id: 'seminar', label: 'Seminar' },
-    { id: 'workshop', label: 'Workshop' },
-    { id: 'talkshow', label: 'Talkshow' },
+    { id: 'beranda', label: 'Beranda', icon: <Home size={18} /> },
+    { id: 'competition', label: 'Competition', icon: <Trophy size={18} /> },
+    { id: 'seminar', label: 'Seminar', icon: <UserCircle size={18} /> },
+    { id: 'workshop', label: 'Workshop', icon: <Monitor size={18} /> },
+    { id: 'talkshow', label: 'Talkshow', icon: <Mic size={18} /> },
   ];
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans">
-      {/* Navbar Adopsi desain official */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex-shrink-0 cursor-pointer" onClick={() => onPageChange('beranda')}>
-              <img src="/assets/nav-logo.png" className="h-10 w-auto" alt="Invofest Logo" />
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-8">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => onPageChange(item.id)}
-                  className={`text-sm font-semibold transition-colors duration-200 ${
-                    activePage === item.id ? 'text-[#1e1b4b] border-b-2 border-[#1e1b4b]' : 'text-gray-500 hover:text-[#1e1b4b]'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-              <button 
-                onClick={() => onPageChange('profile')} 
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                title="Login / Profile"
+      {/* Precision Navbar */}
+      <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 px-4">
+        <div className="max-w-screen-xl mx-auto flex justify-between items-center h-20">
+          <div className="flex-shrink-0 cursor-pointer" onClick={() => onPageChange('beranda')}>
+            <img src="/assets/nav-logo.png" className="h-[55px] w-auto" alt="Invofest Logo" />
+          </div>
+          
+          <div className="hidden lg:flex items-center gap-10">
+            {menuItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => onPageChange(item.id)}
+                className={`flex items-center gap-2 text-sm font-bold transition-all duration-200 ${
+                  activePage === item.id 
+                    ? 'text-[#7B2440]' 
+                    : 'text-slate-700 hover:text-[#7B2440]'
+                }`}
               >
-                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 496 512" className="text-2xl text-gray-700" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"></path></svg>
+                {item.icon}
+                <span>{item.label}</span>
               </button>
-            </div>
-
-            {/* Mobile Burger (Simple) */}
-            <div className="md:hidden flex items-center">
-               <button className="text-gray-600 p-2">
-                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-               </button>
-            </div>
+            ))}
+            <button 
+              onClick={() => onPageChange('profile')} 
+              className="p-1.5 border-2 border-slate-700 rounded-full text-slate-700 hover:text-[#7B2440] hover:border-[#7B2440] transition-all"
+            >
+              <User size={24} />
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="flex-grow">
         {children}
       </main>
 
-      {/* Footer Adopsi desain official */}
-      <footer className="bg-gray-50 border-t border-gray-200">
-          <div className="max-w-screen-xl mx-auto px-4 py-12 lg:py-16">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                  <div className="col-span-1 lg:col-span-1">
-                      <img src="/assets/nav-logo.png" className="h-12 mb-6" alt="Invofest Logo" />
-                      <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                        Informatics Vocational Festival - Menginspirasi dan memberdayakan generasi muda Indonesia dalam menghadapi era digital.
-                      </p>
-                  </div>
-                  
-                  <div>
-                      <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">Navigasi</h3>
-                      <ul className="space-y-4">
-                          {menuItems.map(item => (
-                            <li key={item.id}>
-                              <button onClick={() => onPageChange(item.id)} className="text-gray-500 hover:text-[#1e1b4b] text-sm transition-colors uppercase font-medium">
-                                {item.label}
-                              </button>
-                            </li>
-                          ))}
-                      </ul>
-                  </div>
+      {/* Identical Footer */}
+      <footer className="bg-invofest_secondary py-16 px-6 lg:px-10 relative">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-slate-600">
+            <div className="flex flex-col justify-between h-full">
+                <img src="/assets/nav-logo.png" className="h-[60px] w-fit mb-8" alt="Footer Logo" />
+                <p className="text-sm mt-10 md:mt-auto hidden sm:block">
+                  &copy; {new Date().getFullYear()} INVOFEST. All Rights Reserved.
+                </p>
+            </div>
+            
+            <div>
+                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6">Menu Navigasi</h3>
+                <ul className="space-y-4">
+                    {menuItems.map(item => (
+                      <li key={item.id}>
+                        <button onClick={() => onPageChange(item.id)} className="hover:text-[#7B2440] text-sm flex items-center gap-3 font-medium transition-colors">
+                          {item.icon} {item.label}
+                        </button>
+                      </li>
+                    ))}
+                </ul>
+            </div>
 
-                  <div>
-                      <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">Ikuti Kami</h3>
-                      <div className="flex flex-col gap-4">
-                        <a href="https://instagram.com/invofest_harkatnegeri" target="_blank" className="text-gray-500 hover:text-pink-600 flex items-center gap-3 text-sm">
-                           <span>Instagram</span>
-                        </a>
-                        <a href="https://www.youtube.com/@invofest2024" target="_blank" className="text-gray-500 hover:text-red-600 flex items-center gap-3 text-sm">
-                           <span>Youtube</span>
-                        </a>
-                      </div>
-                  </div>
+            <div>
+                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6">Ikuti Kami</h3>
+                <div className="flex flex-col gap-4">
+                  <a href="#" className="hover:text-[#7B2440] flex items-center gap-3 text-sm font-medium transition-colors">
+                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg> Instagram
+                  </a>
+                  <a href="#" className="hover:text-[#7B2440] flex items-center gap-3 text-sm font-medium transition-colors">
+                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg> Youtube
+                  </a>
+                </div>
+            </div>
 
-                  <div>
-                      <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">Lokasi</h3>
-                      <div className="rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                        <iframe 
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.1835440601208!2d109.10518467424245!3d-6.868597267201685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fb9e2805c1c1b%3A0xe3e61e1ae59106ff!2sPoliteknik%20Harapan%20Bersama%20Tegal!5e0!3m2!1sen!2sid!4v1724836082153!5m2!1sen!2sid" 
-                          width="100%" height="150" style={{border:0}} allowFullScreen loading="lazy"
-                        ></iframe>
-                      </div>
-                  </div>
-              </div>
-              <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                  <p className="text-xs text-gray-400">© 2025 INVOFEST - All Rights Reserved.</p>
-              </div>
+            <div>
+                <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6">Alamat</h3>
+                <div className="rounded-xl overflow-hidden border border-slate-200">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.1835440601208!2d109.10518467424245!3d-6.868597267201685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fb9e2805c1c1b%3A0xe3e61e1ae59106ff!2sPoliteknik%20Harapan%20Bersama%20Tegal!5e0!3m2!1sen!2sid!4v1724836082153!5m2!1sen!2sid" 
+                    width="100%" height="150" style={{border:0}} loading="lazy"
+                  ></iframe>
+                </div>
+            </div>
+            
+            <p className="text-sm mt-4 sm:hidden col-span-1 border-t border-red-100 pt-4">
+              &copy; {new Date().getFullYear()} INVOFEST. All Rights Reserved.
+            </p>
+        </div>
+
+        {/* Scroll To Top Fixed Button */}
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+          className="fixed bottom-6 right-6 z-50 p-1 rounded-full border border-[#7B2440] text-white hover:-translate-y-1 transition-transform"
+        >
+          <div className="bg-[#7B2440] w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+            <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m18 15-6-6-6 6"></path></svg>
           </div>
+        </button>
       </footer>
     </div>
   );
