@@ -4,67 +4,47 @@ interface LoginProps {
 
 export default function Login({ onToggle }: LoginProps) {
   return (
-    <div className="space-y-8 animate-fadeIn">
+    <div className="space-y-6">
       <div>
-        <h1 className="text-4xl font-bold text-[#1e1b4b] mb-2 font-display">Selamat Datang</h1>
-        <p className="text-gray-500">Silakan masuk untuk melanjutkan akses ke Invofest</p>
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">Login</h1>
+        <p className="text-gray-500 text-sm">Masuk ke akun Invofest Anda</p>
       </div>
 
-      <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('Login Berhasil!'); }}>
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-gray-700">Email</label>
+      <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert('Login Berhasil!'); }}>
+        <div className="space-y-1">
+          <label className="text-sm font-medium text-gray-700">Email</label>
           <input 
             type="email" 
-            placeholder="nama@email.com"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#1e1b4b] focus:ring-1 focus:ring-[#1e1b4b] outline-none transition-all"
+            className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#1e1b4b] outline-none transition-all"
             required
           />
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-gray-700">Password</label>
+        <div className="space-y-1">
+          <label className="text-sm font-medium text-gray-700">Password</label>
           <input 
             type="password" 
-            placeholder="••••••••"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#1e1b4b] focus:ring-1 focus:ring-[#1e1b4b] outline-none transition-all"
+            className="w-full px-3 py-2 border border-gray-300 rounded focus:border-[#1e1b4b] outline-none transition-all"
             required
           />
-        </div>
-
-        <div className="flex items-center justify-between">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" className="rounded text-[#1e1b4b] focus:ring-[#1e1b4b]" />
-            <span className="text-sm text-gray-600">Ingat saya</span>
-          </label>
-          <a href="#" className="text-sm font-semibold text-[#1e1b4b] hover:underline">Lupa Password?</a>
         </div>
 
         <button 
           type="submit"
-          className="w-full bg-[#1e1b4b] text-white font-bold py-4 rounded-xl hover:bg-[#2e2b6b] transform transition-active hover:scale-[1.02] active:scale-95 duration-200 shadow-lg shadow-indigo-200"
+          className="w-full bg-[#1e1b4b] text-white py-2 rounded font-semibold hover:bg-[#2e2b6b] transition-colors"
         >
-          MASUK
+          Masuk
         </button>
       </form>
 
-      <div className="text-center">
-        <p className="text-gray-600">
+      <div className="text-center pt-2">
+        <p className="text-sm text-gray-600">
           Belum punya akun?{' '}
-          <button onClick={onToggle} className="text-[#1e1b4b] font-bold hover:underline">
-            Daftar Sekarang
+          <button onClick={onToggle} className="text-[#1e1b4b] font-semibold hover:underline">
+            Daftar
           </button>
         </p>
       </div>
-      
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out forwards;
-        }
-      `}</style>
     </div>
   );
 }
