@@ -5,6 +5,7 @@ import { useAuthStore } from "../../store/useAuthStore";
 
 interface LoginProps {
   onToggle: () => void;
+  onNavigate?: (page: string) => void;
 }
 
 const loginSchema = z.object({
@@ -14,7 +15,7 @@ const loginSchema = z.object({
 
 type LoginData = z.infer<typeof loginSchema>;
 
-export default function Login({ onToggle }: LoginProps) {
+export default function Login({ onToggle, onNavigate }: LoginProps) {
   const login = useAuthStore((state) => state.login);
   
   const {
@@ -28,6 +29,9 @@ export default function Login({ onToggle }: LoginProps) {
   const onSubmit = (data: LoginData) => {
     login(data.username);
     alert('Login Berhasil!');
+    if (onNavigate) {
+      onNavigate('Materi & Tugas');
+    }
   };
 
   return (
