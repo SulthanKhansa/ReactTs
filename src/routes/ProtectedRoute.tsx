@@ -6,10 +6,9 @@ import Register from '../pertemuan-4/pages/Register';
 
 interface ProtectedRouteProps {
   children: ReactNode;
-  onNavigate?: (page: string) => void;
 }
 
-export default function ProtectedRoute({ children, onNavigate }: ProtectedRouteProps) {
+export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const [authView, setAuthView] = useState<'login' | 'register'>('login');
 

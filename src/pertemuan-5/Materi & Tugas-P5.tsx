@@ -327,7 +327,7 @@ export default function P5Dashboard({ onNavigate }: { onNavigate?: (page: string
   };
 
   return (
-    <ProtectedRoute onNavigate={onNavigate}>
+    <ProtectedRoute>
       <div className="fixed inset-0 flex bg-slate-50 overflow-hidden">
         <aside className="w-64 bg-[#7B2440] flex flex-col shadow-2xl z-10">
           <div className="p-8 text-center">
