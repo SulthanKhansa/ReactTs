@@ -29,7 +29,7 @@ type CategoryForm = z.infer<typeof categorySchema>;
 type EventForm = z.infer<typeof eventSchema>;
 type SpeakerForm = z.infer<typeof speakerSchema>;
 
-export default function P5Dashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
+export default function P5Dashboard() {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'kategori' | 'event' | 'pembicara'>('dashboard');
   const [isAdding, setIsAdding] = useState(false);
   const { logout } = useAuthStore();
