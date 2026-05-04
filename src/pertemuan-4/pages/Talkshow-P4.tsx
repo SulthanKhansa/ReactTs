@@ -5,29 +5,25 @@ import { Hero } from '../../components/Hero';
 import { SpeakerCard } from '../../components/SpeakerCard';
 import { FaqItem } from '../../components/FaqItem';
 
-export default function Seminar() {
+
+export default function Talkshow({ onNavigate }: { onNavigate?: (page: string) => void }) {
   useEffect(() => {
     AOS.init({ once: true });
   }, []);
 
-  const speakers = [
-    {
-      id: 1,
-      name: 'Dery Agung Triyadi',
-      topic: 'Cloud Infrastructure Architect',
-      job: 'Amazon Web Services (AWS) Indonesia',
-      imageUrl: '/assets/seminar/Seminar Dery.png',
-    },
-    {
-      id: 2,
-      name: 'Sowam Habibi',
-      topic: 'Customer Engineer, Data Management',
-      job: 'Google Cloud Indonesia',
-      imageUrl: '/assets/seminar/seminar sowam.png',
-    },
-  ];
+  const handleNav = (e: React.MouseEvent, target: string) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(target);
+    }
+  };
 
-  /* schedules removed */
+  const speakers = [
+    { id: 1, name: 'Moh. Ichsan Maulana', topic: 'Human Capital Information System', job: '(HCIS), PT. Garuda Daya Pratama Sejahtera', imageUrl: '/assets/talkshow/talkshow ichsan.png' },
+    { id: 2, name: 'M. Zaim Zamzami', topic: 'Programmer, PT. Pertamina', job: 'Drilling Service Indonesia', imageUrl: '/assets/talkshow/talkshow zaim zamzami.png' },
+    { id: 3, name: 'Daffa Zuhdan Muhtar', topic: 'Android Developer, PT. Astra', job: 'Internasional', imageUrl: '/assets/talkshow/talkshow daffa.png' },
+    { id: 4, name: 'Bayu Adi Prasetiyo', topic: 'Software Engineer', job: 'KOMPAS.ID', imageUrl: '/assets/talkshow/talkshow bayu.png' },
+  ];
 
   const faqs1 = [
     { id: 1, question: "Apa itu INVOFEST?", answer: "Invofest (Informatics Vocational Festival) adalah festival tahunan yang diakan oleh program studi sarjana terapan teknik informatika Universitas Harkat Negeri, yang bertujuan untuk menginspirasi dan memberdayakan generasi muda Indonesia dalam menghadapi era digital." },
@@ -43,21 +39,22 @@ export default function Seminar() {
 
   return (
     <div className="bg-white">
+      
       <Hero
-        title="IT Seminar"
-        subtitle="“Human-AI Integration: Merancang Arsitektur Kolaboratif, Bukan Kompetitif”"
-        description={<p>Seminar nasional yang membahas strategi dan arsitektur teknologi untuk menciptakan sistem di mana manusia dan AI bekerja sebagai mitra yang sinergis.Yang bertujuan mengubah paradigma dari persaingan menjadi kolaborasi, serta meningkatkan pengetahuan peserta dalam merancang teknologi AI yang berpusat pada manusia.</p>}
-        mascotSrc="/assets/Maskot-Seminar.png"
+        title="IT Talkshow"
+        subtitle="“Humanizing Technology: Kolaborasi Manusia dan AI di Masa Depan”"
+        description={<p>Sebuah diskusi interaktif yang mengeksplorasi cara mengintegrasikan nilai-nilai kemanusiaan seperti etika, empati, dan kreativitas ke dalam pengembangan kecerdasan buatan, yang bertujuan menginspirasi audiens untuk membangun dan memanfaatkan AI sebagai alat kolaboratif.</p>}
+        mascotSrc="/assets/Maskot-Talkshow.png"
       />
 
-      {/* TENTANG IT SEMINAR */}
+      {/* TENTANG IT TALKSHOW */}
       <div className="bg-invofest_secondary w-full h-fit relative">
           <img src="/assets/wave-top.png" alt="wave" className="w-full relative top-0" />
           <div className="max-w-screen-xl mx-auto py-20">
               <div className="w-full h-fit p-4 px-8">
-                  <h1 data-aos="zoom-in-up" data-aos-delay="300" className="font-semibold text-invofest text-center text-2xl sm:text-4xl lg:text-5xl mb-5">Tentang IT Seminar</h1>
+                  <h1 data-aos="zoom-in-up" data-aos-delay="300" className="font-semibold text-invofest text-center text-2xl sm:text-4xl lg:text-5xl mb-5">Tentang IT Talkshow</h1>
                   <p data-aos="zoom-in-up" data-aos-delay="450" className="text-center text-sm md:text-base lg:text-[1.35rem] sm:leading-[1.5rem] lg:leading-[2rem] text-slate-600">
-                      Seminar bertajuk <strong>“Human-AI Integration: Merancang Arsitektur Kolaboratif"</strong>. Di tengah pesatnya kemajuan kecerdasan buatan (AI), narasi yang sering muncul adalah tentang persaingan antara manusia dan mesin. Kekhawatiran akan penggantian peran manusia oleh teknologi cerdas menjadi diskusi utama di berbagai sektor. Namun, bagaimana jika kita mengubah paradigma tersebut? Seminar Nasional Teknologi Informasi ini hadir untuk menjawab tantangan itu dengan mengangkat tema <strong>"Human-AI Integration: Merancang Arsitektur Kolaboratif, Bukan Kompetitif.”</strong> Kami bertujuan untuk menggeser fokus dari ketakutan akan kompetisi menjadi eksplorasi peluang kolaborasi. Seminar ini akan mengupas tuntas bagaimana kita dapat merancang sistem, etika, dan lingkungan kerja di mana AI berfungsi sebagai mitra yang memperkuat kecerdasan, kreativitas, dan produktivitas manusia—bukan sebagai pengganti.
+                      Seiring teknologi, khususnya kecerdasan buatan (AI), yang semakin meresap ke dalam setiap aspek kehidupan kita, muncul sebuah pertanyaan fundamental: Apakah kita sedang menciptakan teknologi yang melayani manusia, atau justru sebaliknya? Untuk menjawab pertanyaan tersebut, kami mempersembahkan talkshow berskala nasional: <strong>“Humanizing Technology: Kolaborasi Manusia dan AI di Masa Depan.”</strong> Acara ini dirancang bukan untuk membahas teknologi sebagai entitas yang dingin dan terpisah, melainkan untuk menggali bagaimana kita dapat menanamkan nilai-nilai kemanusiaan—seperti empati, etika, dan kreativitas—ke dalam inti pengembangan AI. Kami akan mengupas tuntas visi masa depan di mana AI tidak menjadi pesaing, tetapi menjadi mitra kolaboratif yang memperkuat potensi unik manusia.
                   </p>
               </div>
           </div>
@@ -70,7 +67,7 @@ export default function Seminar() {
           <h1 data-aos="zoom-in-up" data-aos-delay="300" className="font-semibold text-invofest text-center text-2xl sm:text-4xl lg:text-5xl mb-5 sm:mb-44">
             Temui Pembicara Khusus Kami
           </h1>
-          <div className="flex flex-col sm:flex-row gap-36 mt-36 sm:gap-10 justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 gap-y-40 mt-36 justify-center w-full px-2">
             {speakers.map((speaker, index) => (
               <SpeakerCard 
                 key={speaker.id} 
@@ -78,26 +75,26 @@ export default function Seminar() {
                 topic={speaker.topic} 
                 job={speaker.job} 
                 imageUrl={speaker.imageUrl}
-                aosDelay={String(500 + index * 500)}
+                aosDelay={String(300 + index * 200)}
               />
             ))}
           </div>
         </div>
       </div>
 
-      {/* PELAKSANAAN IT SEMINAR */}
+      {/* PELAKSANAAN IT TALKSHOW */}
       <div className="bg-invofest_secondary w-full h-fit relative">
           <img src="/assets/wave-top.png" alt="wave" className="w-full relative top-0" />
           <div className="max-w-screen-xl mx-auto py-20">
               <div className="w-full h-fit p-4 px-8">
-                  <h1 data-aos="zoom-in-up" data-aos-delay="300" className="font-semibold text-invofest text-center text-2xl sm:text-4xl lg:text-5xl mb-5">Pelaksanaan IT Seminar</h1>
+                  <h1 data-aos="zoom-in-up" data-aos-delay="300" className="font-semibold text-invofest text-center text-2xl sm:text-4xl lg:text-5xl mb-5">Pelaksanaan IT Talkshow</h1>
               </div>
               <div className="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
                 <div data-aos="fade-up" data-aos-delay="300" className="bg-white rounded-2xl shadow-sm border-r-8 border-[#7B2440] p-4 flex flex-row items-center gap-5">
                   <div className="bg-[#7B2440] w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 text-white text-2xl shadow-md">
                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg>
                   </div>
-                  <p className="text-slate-600 font-medium text-lg leading-snug">Kamis, 27 November 2025</p>
+                  <p className="text-slate-600 font-medium text-lg leading-snug">Senin, 24 November 2025</p>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="450" className="bg-white rounded-2xl shadow-sm border-r-8 border-[#7B2440] p-4 flex flex-row items-center gap-5">
                   <div className="bg-[#7B2440] w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 text-white text-2xl shadow-md">
@@ -152,6 +149,45 @@ export default function Seminar() {
           </div>
         </div>
       </div>
+
+      {/* FOOTER */}
+      <footer className="bg-[#FFF1F2] mt-8">
+          <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 px-6 lg:px-10">
+              <div className="lg:flex lg:justify-between">
+                  <div className="mb-6 lg:mb-0">
+                      <a className="cursor-pointer flex items-center" onClick={(e) => handleNav(e, 'Beranda-P4')}>
+                          <img src="/assets/nav-logo.png" className="w-48" alt="Invofest Logo" />
+                      </a>
+                  </div>
+                  <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                      <div>
+                          <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Menu Navigasi</h2>
+                          <ul className="text-gray-500 font-medium">
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Beranda-P4')}>Beranda</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Seminar-P4')}>Seminar</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Competition-P4')}>Competition</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Workshop-P4')}>Workshop</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Talkshow-P4')}>Talkshow</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+              <div className="sm:flex sm:items-center sm:justify-between">
+                  <span className="text-sm text-gray-500 sm:text-center">© 2025 <a className="cursor-pointer hover:underline" onClick={(e) => handleNav(e, 'Beranda-P4')}>INVOFEST</a>. All Rights Reserved.</span>
+              </div>
+          </div>
+      </footer>
     </div>
   );
 }

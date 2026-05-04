@@ -28,9 +28,8 @@ export default function Login({ onToggle, onNavigate }: LoginProps) {
 
   const onSubmit = (data: LoginData) => {
     login(data.username);
-    alert('Login Berhasil!');
     if (onNavigate) {
-      onNavigate('Materi & Tugas');
+      onNavigate('Materi & Tugas-P5');
     }
   };
 

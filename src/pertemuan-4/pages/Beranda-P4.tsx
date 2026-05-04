@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaqItem } from '../../components/FaqItem';
 
+
 const faqs1 = [
   { id: 1, question: "Apa itu INVOFEST?", answer: "Invofest (Informatics Vocational Festival) adalah festival tahunan yang diakan oleh program studi sarjana terapan teknik informatika Universitas Harkat Negeri, yang bertujuan untuk menginspirasi dan memberdayakan generasi muda Indonesia dalam menghadapi era digital." },
   { id: 2, question: "Kapan dan dimana INVOFEST dilaksanakan?", answer: "INVOFEST diselenggarakan mulai tanggal 21 Oktober 2025 sampai dengan tanggal 27 November 2025. Untuk acara workshop, seminar, talkshow diadakan secara Offline di kampus 1 Universitas Harkat Negeri dan kompetisi diadakan secara Online." },
@@ -24,12 +25,20 @@ export default function Beranda({ onNavigate }: BerandaProps) {
     AOS.init({ duration: 800, once: true });
   }, []);
 
+  const handleNav = (e: React.MouseEvent, target: string) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(target);
+    }
+  };
+
   return (
     <div className="bg-white overflow-hidden">
+      
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative pt-2 lg:pt-4 pb-16 px-6 lg:px-10 bg-white">
-        <div className="max-w-screen-xl mx-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative pt-24 lg:pt-32 pb-16 px-6 lg:px-10 bg-white">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div data-aos="fade-right" className="flex flex-col items-start text-left">
             <h1 className="text-5xl sm:text-7xl font-black text-[#7B2440] leading-none mb-6 tracking-tight uppercase">
               INVOFEST
@@ -64,7 +73,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
 
       {/* ===== TENTANG INVOFEST ===== */}
       <section id="tentang" className="bg-[#FFF1F2] py-16 px-6 lg:px-10">
-        <div className="max-w-screen-xl mx-0">
+        <div className="max-w-screen-xl mx-auto">
           <h2 data-aos="fade-right" className="text-[#7B2440] text-3xl lg:text-4xl font-black mb-6">Tentang INVOFEST</h2>
           <p data-aos="fade-up" className="text-slate-600 text-base leading-relaxed max-w-4xl mb-14">
             Invofest 2025, yang diselenggarakan oleh sarjana terapan Teknik Informatika Universitas Harkat Negeri, adalah festival tahunan yang bertujuan untuk menginspirasi dan memberdayakan generasi muda Indonesia dalam menghadapi era digital. Dengan mengusung tema{' '}
@@ -75,10 +84,10 @@ export default function Beranda({ onNavigate }: BerandaProps) {
           {/* 4 Activity Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "IT Seminar", page: "Seminar", desc: 'Seminar nasional ini membahas "Human-AI Integration: Merancang Arsitektur Kolaboratif, Bukan Kompetitif" untuk mengembangkan potensi diri dan pengetahuan teknologi lebih dalam lagi.' },
-              { title: "IT Talkshow", page: "Talkshow", desc: 'Talkshow "Humanizing Technology: Kolaborasi Manusia dan AI di Masa Depan" membahas peran manusia dalam memanfaatkan AI untuk solusi berkelanjutan dan peningkatan teknologi.' },
-              { title: "IT Competition", page: "Competition", desc: 'Kompetisi "From Creation to Innovation" mengajak generasi muda untuk mengembangkan inovasi dan kreativitas guna membentuk kelompok yang memiliki potensi luar biasa, yang mampu mewujudkan masa depan yang berkelanjutan.' },
-              { title: "IT Workshop", page: "Workshop", desc: "Workshop 'AI for a Sustainable Future: The Role of Z Generation in the Digital Era' membekali Gen Z dengan keterampilan praktis AI untuk menciptakan solusi berkelanjutan." },
+              { title: "IT Seminar", page: "Seminar-P4", desc: 'Seminar nasional ini membahas "Human-AI Integration: Merancang Arsitektur Kolaboratif, Bukan Kompetitif" untuk mengembangkan potensi diri dan pengetahuan teknologi lebih dalam lagi.' },
+              { title: "IT Talkshow", page: "Talkshow-P4", desc: 'Talkshow "Humanizing Technology: Kolaborasi Manusia dan AI di Masa Depan" membahas peran manusia dalam memanfaatkan AI untuk solusi berkelanjutan dan peningkatan teknologi.' },
+              { title: "IT Competition", page: "Competition-P4", desc: 'Kompetisi "From Creation to Innovation" mengajak generasi muda untuk mengembangkan inovasi dan kreativitas guna membentuk kelompok yang memiliki potensi luar biasa, yang mampu mewujudkan masa depan yang berkelanjutan.' },
+              { title: "IT Workshop", page: "Workshop-P4", desc: "Workshop 'AI for a Sustainable Future: The Role of Z Generation in the Digital Era' membekali Gen Z dengan keterampilan praktis AI untuk menciptakan solusi berkelanjutan." },
             ].map((act, i) => (
               <div key={i} data-aos="zoom-in" data-aos-delay={i * 100}
                 className="bg-white border-l-4 border-[#7B2440] rounded-r-xl p-6 shadow-sm flex flex-col gap-4">
@@ -104,7 +113,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
 
       {/* ===== IT SEMINAR — White, Teks Kiri, Maskot Kanan ===== */}
       <section className="bg-white py-20 px-6 lg:px-10">
-        <div className="max-w-screen-xl mx-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div data-aos="fade-right" className="flex flex-col items-start">
             <h2 className="text-[#7B2440] text-4xl font-black mb-6">IT Seminar</h2>
             <p className="text-slate-600 text-base leading-relaxed mb-8">
@@ -112,7 +121,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
               <span className="font-bold text-slate-800">"Human-AI Integration: Merancang Arsitektur Kolaboratif, Bukan Kompetitif."</span>{' '}
               Kami bertujuan untuk menggeser fokus dari ketakutan akan kompetisi menjadi eksplorasi peluang kolaborasi. Seminar ini akan mengupas tuntas bagaimana kita dapat merancang sistem, etika, dan lingkungan kerja di mana AI berfungsi sebagai mitra yang memperkuat kecerdasan, kreativitas, dan produktivitas manusia—bukan sebagai pengganti.
             </p>
-            <button onClick={() => onNavigate?.('seminar')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
+            <button onClick={() => onNavigate?.('Seminar-P4')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
               DAFTAR IT SEMINAR
             </button>
           </div>
@@ -131,7 +140,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
 
       {/* ===== IT TALKSHOW — Pink, Maskot Kiri, Teks Kanan ===== */}
       <section className="bg-[#FFF1F2] py-20 px-6 lg:px-10">
-        <div className="max-w-screen-xl mx-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div data-aos="fade-right" className="flex justify-center lg:justify-start order-2 lg:order-1">
             <img src="/assets/Maskot-Talkshow.png" alt="Maskot IT Talkshow" className="w-full max-w-xs sm:max-w-sm lg:max-w-md drop-shadow-2xl" />
           </div>
@@ -142,7 +151,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
               <span className="font-bold text-slate-800">"Humanizing Technology: Kolaborasi Manusia dan AI di Masa Depan."</span>{' '}
               Acara ini dirancang bukan untuk membahas teknologi sebagai entitas yang dingin dan terpisah, melainkan untuk menggali bagaimana kita dapat menanamkan nilai-nilai kemanusiaan—seperti empati, etika, dan kreativitas—ke dalam inti pengembangan AI. Kami akan mengupas tuntas visi masa depan di mana AI tidak menjadi pesaing, tetapi menjadi mitra kolaboratif yang memperkuat potensi unik manusia. Talkshow ini bertujuan untuk menginspirasi generasi muda dan para penggiat teknologi untuk tidak hanya menjadi pengguna, tetapi juga menjadi arsitek masa depan digital yang lebih manusiawi. Mari bergabung untuk meningkatkan pengetahuan, mengembangkan potensi diri, dan menjadi bagian dari dialog penting dalam membentuk era kolaborasi manusia dan AI.
             </p>
-            <button onClick={() => onNavigate?.('talkshow')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
+            <button onClick={() => onNavigate?.('Talkshow-P4')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
               DAFTAR IT TALKSHOW
             </button>
           </div>
@@ -158,7 +167,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
 
       {/* ===== IT WORKSHOP — White, Teks Kiri, Maskot Kanan ===== */}
       <section className="bg-white py-20 px-6 lg:px-10">
-        <div className="max-w-screen-xl mx-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div data-aos="fade-right" className="flex flex-col items-start">
             <h2 className="text-[#7B2440] text-4xl font-black mb-6">IT Workshop</h2>
             <p className="text-slate-600 text-base leading-relaxed mb-8">
@@ -166,7 +175,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
               <span className="font-bold text-slate-800">'AI for a Sustainable Future: The Role of Z Generation in the Digital Era'</span>{' '}
               membekali Gen Z dengan keterampilan praktis AI untuk menciptakan solusi berkelanjutan. Peserta akan mendapatkan pelatihan langsung dari para praktisi industri dan mendapatkan sertifikat keikutsertaan yang diakui secara profesional.
             </p>
-            <button onClick={() => onNavigate?.('workshop')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
+            <button onClick={() => onNavigate?.('Workshop-P4')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
               DAFTAR IT WORKSHOP
             </button>
           </div>
@@ -185,7 +194,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
 
       {/* ===== IT COMPETITION — Pink, Maskot Kiri, Teks Kanan ===== */}
       <section className="bg-[#FFF1F2] py-20 px-6 lg:px-10">
-        <div className="max-w-screen-xl mx-0 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div data-aos="fade-right" className="flex justify-center lg:justify-start order-2 lg:order-1">
             <img src="/assets/Maskot-Lomba.png" alt="Maskot IT Competition" className="w-full max-w-xs sm:max-w-sm lg:max-w-md drop-shadow-2xl" />
           </div>
@@ -196,7 +205,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
               <span className="font-bold text-slate-800">"From Creation to Innovation"</span>{' '}
               mengajak generasi muda untuk mengembangkan inovasi dan kreativitas guna membentuk kelompok yang memiliki potensi luar biasa, yang mampu mewujudkan masa depan yang berkelanjutan. Terdapat berbagai kategori lomba yang dapat diikuti oleh peserta dari seluruh Indonesia.
             </p>
-            <button onClick={() => onNavigate?.('competition')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
+            <button onClick={() => onNavigate?.('Competition-P4')} className="px-7 py-3 bg-[#7B2440] text-white font-bold rounded-lg hover:bg-[#5a1a2e] transition-all text-sm uppercase">
               DAFTAR IT COMPETITION
             </button>
           </div>
@@ -243,7 +252,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
 
       {/* ===== SPONSORS ===== */}
       <section className="bg-white py-16 px-6 lg:px-10 border-t border-slate-100">
-        <div className="max-w-screen-xl mx-0">
+        <div className="max-w-screen-xl mx-auto">
           <h3 data-aos="fade-up" className="text-slate-400 text-xs font-bold mb-10 uppercase tracking-[0.5em] text-center">Sponsor INVOFEST 2025</h3>
           <div className="flex flex-wrap justify-center gap-10 grayscale opacity-50">
             {[1,2,3,4].map(i => <div key={i} className="w-32 h-12 bg-slate-100 rounded-lg" />)}
@@ -253,7 +262,7 @@ export default function Beranda({ onNavigate }: BerandaProps) {
 
       {/* ===== MEDIA PARTNERS ===== */}
       <section className="bg-white py-16 px-6 lg:px-10 border-t border-slate-100">
-        <div className="max-w-screen-xl mx-0">
+        <div className="max-w-screen-xl mx-auto">
           <h3 data-aos="fade-up" className="text-slate-400 text-xs font-bold mb-10 uppercase tracking-[0.5em] text-center">Media Partner INVOFEST 2025</h3>
           <div className="flex flex-wrap justify-center gap-8 grayscale opacity-50">
             {[1,2,3,4,5].map(i => <div key={i} className="w-24 h-10 bg-slate-100 rounded-lg" />)}
@@ -261,6 +270,44 @@ export default function Beranda({ onNavigate }: BerandaProps) {
         </div>
       </section>
 
+      {/* FOOTER */}
+      <footer className="bg-[#FFF1F2] mt-8">
+          <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 px-6 lg:px-10">
+              <div className="lg:flex lg:justify-between">
+                  <div className="mb-6 lg:mb-0">
+                      <a className="cursor-pointer flex items-center" onClick={(e) => handleNav(e, 'Beranda-P4')}>
+                          <img src="/assets/nav-logo.png" className="w-48" alt="Invofest Logo" />
+                      </a>
+                  </div>
+                  <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                      <div>
+                          <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Menu Navigasi</h2>
+                          <ul className="text-gray-500 font-medium">
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Beranda-P4')}>Beranda</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Seminar-P4')}>Seminar</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Competition-P4')}>Competition</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Workshop-P4')}>Workshop</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Talkshow-P4')}>Talkshow</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+              <div className="sm:flex sm:items-center sm:justify-between">
+                  <span className="text-sm text-gray-500 sm:text-center">© 2025 <a className="cursor-pointer hover:underline" onClick={(e) => handleNav(e, 'Beranda-P4')}>INVOFEST</a>. All Rights Reserved.</span>
+              </div>
+          </div>
+      </footer>
     </div>
   );
 }

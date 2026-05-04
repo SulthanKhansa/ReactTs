@@ -5,10 +5,18 @@ import { Hero } from '../../components/Hero';
 import { CategoryCard } from '../../components/CategoryCard';
 import { FaqItem } from '../../components/FaqItem';
 
-export default function Competition() {
+
+export default function Competition({ onNavigate }: { onNavigate?: (page: string) => void }) {
   useEffect(() => {
     AOS.init({ once: true });
   }, []);
+
+  const handleNav = (e: React.MouseEvent, target: string) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(target);
+    }
+  };
 
   const categories = [
     {
@@ -45,6 +53,7 @@ export default function Competition() {
 
   return (
     <div className="bg-white">
+      
       <Hero
         title="IT Competition"
         subtitle="“From Creation to Innovation”"
@@ -132,6 +141,44 @@ export default function Competition() {
         </div>
       </section>
 
+      {/* FOOTER */}
+      <footer className="bg-[#FFF1F2] mt-8">
+          <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 px-6 lg:px-10">
+              <div className="lg:flex lg:justify-between">
+                  <div className="mb-6 lg:mb-0">
+                      <a className="cursor-pointer flex items-center" onClick={(e) => handleNav(e, 'Beranda-P4')}>
+                          <img src="/assets/nav-logo.png" className="w-48" alt="Invofest Logo" />
+                      </a>
+                  </div>
+                  <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                      <div>
+                          <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Menu Navigasi</h2>
+                          <ul className="text-gray-500 font-medium">
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Beranda-P4')}>Beranda</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Seminar-P4')}>Seminar</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Competition-P4')}>Competition</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Workshop-P4')}>Workshop</a>
+                              </li>
+                              <li className="mb-4">
+                                  <a className="cursor-pointer hover:text-invofest flex items-center gap-2" onClick={(e) => handleNav(e, 'Talkshow-P4')}>Talkshow</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+              <div className="sm:flex sm:items-center sm:justify-between">
+                  <span className="text-sm text-gray-500 sm:text-center">© 2025 <a className="cursor-pointer hover:underline" onClick={(e) => handleNav(e, 'Beranda-P4')}>INVOFEST</a>. All Rights Reserved.</span>
+              </div>
+          </div>
+      </footer>
     </div>
   );
 }
