@@ -1,6 +1,9 @@
 # Project Pemrograman Web 2 - React & TypeScript
 
-Repo ini berisi kumpulan latihan dari Sesi Pertemuan
+Repo ini berisi kumpulan latihan dari Sesi Pertemuan dengan fokus pada pembangunan aplikasi web modern menggunakan React, TypeScript, dan Tailwind CSS.
+
+## Fitur Utama Navigasi
+Aplikasi ini menggunakan sistem **Dynamic SPA Routing** dengan bar navigasi floating yang memungkinkan perpindahan antar pertemuan secara instan tanpa reload halaman.
 
 ## Preview Tugas
 
@@ -13,11 +16,15 @@ Repo ini berisi kumpulan latihan dari Sesi Pertemuan
 ### Pertemuan 4: Invofest Clone Frontend
 ![Invofest Clone Frontend](./src/pertemuan-4/pertemuan-4.png)
 
+### Pertemuan 5: Dashboard Admin (CMS Latihan)
+![Dashboard Admin](./src/pertemuan-5/pertemuan-5.png)
+
 ## Daftar Isi
-- **Pertemuan 1**: Dasar-dasar TypeScript.
-- **Pertemuan 2**: Latihan membuat Landing Page Workshop menggunakan React.
-- **Pertemuan 3**: Latihan validasi form dengan Zod dan struktur komponen Atomic Design.
-- **Pertemuan 4**: Pembangunan UI/UX Clone Invofest multi-halaman yang konsisten dengan sistem komponen dinamis, animasi berstruktur (AOS), dan tata letak modern.
+- **Pertemuan 1**: Dasar-dasar TypeScript & Introduction Screen.
+- **Pertemuan 2**: Latihan membuat Landing Page Workshop menggunakan React Props & State.
+- **Pertemuan 3**: Latihan validasi form dengan Zod, React Hook Form, dan struktur komponen Atomic Design.
+- **Pertemuan 4**: Pembangunan UI/UX Clone Invofest multi-halaman dengan sistem komponen dinamis, animasi berstruktur (AOS), dan navigasi terintegrasi.
+- **Pertemuan 5**: Implementasi Dashboard Admin (CMS) dengan sistem pengelolaan data (State-based), branding warna Invofest, dan sistem otentikasi sederhana (Protected Routes).
 
 ## Cara Inisialisasi
 1. Pastikan sudah install Node.js.
