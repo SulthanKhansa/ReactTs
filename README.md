@@ -24,7 +24,11 @@ Aplikasi ini menggunakan sistem **Dynamic SPA Routing** dengan bar navigasi floa
 - **Pertemuan 2**: Latihan membuat Landing Page Workshop menggunakan React Props & State.
 - **Pertemuan 3**: Latihan validasi form dengan Zod, React Hook Form, dan struktur komponen Atomic Design.
 - **Pertemuan 4**: Pembangunan UI/UX Clone Invofest multi-halaman dengan sistem komponen dinamis, animasi berstruktur (AOS), dan navigasi terintegrasi.
-- **Pertemuan 5**: Implementasi Dashboard Admin (CMS) dengan sistem pengelolaan data (State-based), branding warna Invofest, dan sistem otentikasi sederhana (Protected Routes).
+- **Pertemuan 5**: Implementasi Dashboard Admin (CMS)
+  - Sistem pengelolaan data (State-based) untuk Kategori, Event, dan Pembicara.
+  - Rebranding visual menggunakan warna Merah Invofest (`#7B2440`).
+  - Sistem otentikasi sederhana dan **Protected Routes**.
+  - Layout dashboard minimalis dengan ringkasan data yang dinamis.
 
 ## Cara Inisialisasi
 1. Pastikan sudah install Node.js.
