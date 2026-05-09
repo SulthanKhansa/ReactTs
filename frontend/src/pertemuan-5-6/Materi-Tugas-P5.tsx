@@ -170,7 +170,7 @@ export default function P5Dashboard() {
       id: Date.now(),
       title: data.title,
       description: data.description,
-      imageUrl: data.imageUrl || "/assets/competition/web_design.jpg"
+      imageUrl: data.imageUrl || ""
     };
     setCategories(prev => [...prev, newCat]);
     setIsAdding(false);
@@ -423,9 +423,11 @@ export default function P5Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {categories.map((cat) => (
                 <div key={cat.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex gap-4">
-                  <div className="w-24 h-24 rounded-xl bg-slate-100 overflow-hidden shrink-0">
-                    <img src={cat.imageUrl} className="w-full h-full object-cover" />
-                  </div>
+                  {cat.imageUrl && (
+                    <div className="w-24 h-24 rounded-xl bg-slate-100 overflow-hidden shrink-0">
+                      <img src={cat.imageUrl} className="w-full h-full object-cover" />
+                    </div>
+                  )}
                   <div>
                     <h3 className="font-bold text-gray-900 text-lg">{cat.title}</h3>
                     <p className="text-gray-500 text-sm line-clamp-2 mt-1">{cat.description}</p>
