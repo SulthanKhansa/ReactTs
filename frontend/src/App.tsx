@@ -54,6 +54,10 @@ function App() {
   }, []);
 
   const [activeKey, setActiveKey] = useState<string>(() => {
+    if (useAuthStore.getState().isAuthenticated) {
+      const p5 = meetings.find(m => m.id === "5" || m.id === "5-6" || m.sortOrder === 7);
+      if (p5) return p5.key;
+    }
     return meetings.length > 0 ? meetings[0].key : "";
   });
 

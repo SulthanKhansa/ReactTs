@@ -6,7 +6,7 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <div className="absolute inset-0 w-full flex bg-white overflow-hidden">
+    <div className="w-full min-h-[80vh] flex bg-transparent overflow-hidden">
       {/* Sisi Kiri: Robot Mascot (Sederhana) */}
       <div className="hidden lg:flex w-1/2 bg-white items-center justify-center p-12 border-r border-gray-100">
         <div className="flex flex-col items-center gap-8">
