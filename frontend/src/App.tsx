@@ -36,7 +36,7 @@ function App() {
       } else if (path.includes('Tugas-P4')) {
         sortOrder = 6;
         displayName = "Tugas (P4)";
-      } else if (path.includes('pertemuan-5&6') || path.includes('pertemuan-5')) {
+      } else if (path.includes('pertemuan-5-6') || path.includes('pertemuan-5')) {
         sortOrder = 7;
         displayName = "Materi & Tugas (P5 & P6)";
       }

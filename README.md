@@ -21,10 +21,10 @@ Mempelajari dasar-dasar Static Typing, Interface, dan Konfigurasi TypeScript unt
 ![Invofest Multi-page](./frontend/src/pertemuan-4/pertemuan-4.png)
 
 ### Pertemuan 5: Dashboard Admin (CMS Latihan)
-![Dashboard Admin](./frontend/src/pertemuan-5&6/pertemuan-5.png)
+![Dashboard Admin](./frontend/src/pertemuan-5-6/pertemuan-5.png)
 
 ### Pertemuan 6: Backend Development (Express API)
-![Backend API](./frontend/src/pertemuan-5&6/pertemuan-6.png)
+![Backend API](./frontend/src/pertemuan-5-6/pertemuan-6.png)
 
 
 ## Cara Inisialisasi
