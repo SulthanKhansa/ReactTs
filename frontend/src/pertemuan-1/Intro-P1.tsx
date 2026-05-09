@@ -1,6 +1,6 @@
 export default function Intro() {
   return (
-    <div className="fixed inset-0 flex flex-col items-center justify-center bg-slate-50 text-slate-800 p-8 overflow-hidden">
+    <div className="w-full min-h-[80vh] flex flex-col items-center justify-center bg-transparent text-slate-800 p-8">
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-3xl text-center">
         <h1 className="text-5xl font-extrabold mb-8 pb-2 bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
           Pengenalan
