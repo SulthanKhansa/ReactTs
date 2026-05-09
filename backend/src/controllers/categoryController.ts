@@ -2,8 +2,24 @@ import type { Request, Response } from "express";
 import type { Category } from "../types/category.js";
 
 let categories: Category[] = [
-  { id: 1, name: "Web Development" },
-  { id: 2, name: "Mobile Development" }
+  { 
+    id: 1, 
+    name: "Poster Design Competition", 
+    description: "Poster Design Competition ini adalah kompetisi untuk menciptakan suatu karya dalam bentuk poster digital yang komunikatif dan inspiratif.",
+    imageUrl: "/assets/competition/web_design.jpg"
+  },
+  { 
+    id: 2, 
+    name: "UI/UX Design Competition", 
+    description: "UI/UX Design Competition ini adalah kompetisi untuk menciptakan dan merancang inovasi sebuah produk digital.",
+    imageUrl: "/assets/competition/ui_ux.jpg"
+  },
+  { 
+    id: 3, 
+    name: "Web Design Competition", 
+    description: "Web Design Competition ini adalah kompetisi untuk menciptakan suatu perangkat lunak berbasis website yang menggunakan desain menarik, unik, dan responsive.",
+    imageUrl: "/assets/competition/software_dev.jpg"
+  }
 ];
 
 // 1. menampilkan semua category
@@ -14,14 +30,16 @@ export const getAllCategories = (req: Request, res: Response) => {
 // 2. menyimpan data category baru
 export const createCategory = (req: Request, res: Response) => {
   try {
-    const { name } = req.body;
-    if (!name) {
-      return res.status(400).json({ message: "Nama kategori harus diisi" });
+    const { name, description, imageUrl } = req.body;
+    if (!name || !description) {
+      return res.status(400).json({ message: "Nama dan deskripsi kategori harus diisi" });
     }
 
     const newCategory: Category = {
       id: categories.length + 1,
-      name
+      name,
+      description,
+      imageUrl: imageUrl || ""
     };
 
     categories.push(newCategory);

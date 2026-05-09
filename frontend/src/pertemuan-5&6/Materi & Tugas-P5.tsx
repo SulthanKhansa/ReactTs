@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
 import ProtectedRoute from '../routes/ProtectedRoute';
 import { useForm } from 'react-hook-form';
@@ -35,119 +35,118 @@ export default function P5Dashboard() {
   const { logout } = useAuthStore();
 
   // Dynamic Data State
-  const [categories, setCategories] = useState([
-    {
-      id: 1,
-      title: 'Poster Design Competition',
-      description: 'Poster Design Competition ini adalah kompetisi untuk menciptakan suatu karya dalam bentuk poster digital yang komunikatif dan inspiratif.',
-      imageUrl: '/assets/competition/web_design.jpg',
-    },
-    {
-      id: 2,
-      title: 'UI/UX Design Competition',
-      description: 'UI/UX Design Competition ini adalah kompetisi untuk menciptakan dan merancang inovasi sebuah produk digital.',
-      imageUrl: '/assets/competition/ui_ux.jpg',
-    },
-    {
-      id: 3,
-      title: 'Web Design Competition',
-      description: 'Web Design Competition ini adalah kompetisi untuk menciptakan suatu perangkat lunak berbasis website yang menggunakan desain menarik, unik, dan responsive.',
-      imageUrl: '/assets/competition/software_dev.jpg',
-    },
-  ]);
+  const [categories, setCategories] = useState<any[]>([]);
 
-  const [events, setEvents] = useState([
-    {
-      id: 1,
-      name: 'Mobile Development',
-      date: '2025-11-25',
-      location: 'Lab Kom D.1',
-      description: '08.00 WIB - 16.30 WIB'
-    },
-    {
-      id: 2,
-      name: 'Artificial Intelligence',
-      date: '2025-11-25',
-      location: 'Lab Kom D.2',
-      description: '08.00 WIB - 16.30 WIB'
-    },
-    {
-      id: 3,
-      name: 'Cyber Security',
-      date: '2025-11-26',
-      location: 'Lab Kom D.1',
-      description: '08.00 WIB - 16.30 WIB'
-    }
-  ]);
+  const [events, setEvents] = useState<any[]>([]);
 
-  const [speakers, setSpeakers] = useState([
-    {
-      id: 1,
-      name: 'Dery Agung Triyadi',
-      topic: 'Cloud Infrastructure Architect',
-      job: 'Amazon Web Services (AWS) Indonesia'
-    },
-    {
-      id: 2,
-      name: 'Sowam Habibi',
-      topic: 'Customer Engineer, Data Management',
-      job: 'Google Cloud Indonesia'
-    },
-    {
-      id: 3,
-      name: 'Lhuqita Fazry',
-      topic: 'Mobile Development',
-      job: 'Developer, Founder Rumah Coding Indonesia'
-    },
-    {
-      id: 4,
-      name: 'M. Dendi Purwanto',
-      topic: 'Artificial Intelligence',
-      job: 'Software Engineer, PT. Mayar Kernel Supernova'
-    },
-    {
-      id: 5,
-      name: 'Danang Avan M',
-      topic: 'Cyber Security',
-      job: 'Security Analyst, Founder | Contributor TegalSec'
+  const [speakers, setSpeakers] = useState<any[]>([]);
+
+  // Fetch Data from Backend
+  const fetchData = async () => {
+    try {
+      const [catRes, eventRes, speakerRes] = await Promise.all([
+        fetch('http://localhost:3000/categories'),
+        fetch('http://localhost:3000/events'),
+        fetch('http://localhost:3000/speakers')
+      ]);
+
+      const catData = await catRes.json();
+      const eventData = await eventRes.json();
+      const speakerData = await speakerRes.json();
+
+      setCategories(catData.map((c: any) => ({
+        id: c.id,
+        title: c.name,
+        description: c.description,
+        imageUrl: c.imageUrl
+      })));
+
+      setEvents(eventData.map((e: any) => ({
+        id: e.id,
+        name: e.nama,
+        date: e.tanggal,
+        location: e.lokasi,
+        description: e.waktu // Map waktu to description in frontend
+      })));
+
+      setSpeakers(speakerData.map((s: any) => ({
+        id: s.id,
+        name: s.nama,
+        topic: s.keahlian,
+        job: s.biodata
+      })));
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
     }
-  ]);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // Category Form
   const catForm = useForm<CategoryForm>({ resolver: zodResolver(categorySchema) });
-  const onAddCategory = (data: CategoryForm) => {
-    const newCat = {
-      id: Date.now(),
-      ...data,
-      imageUrl: data.imageUrl || ''
-    };
-    setCategories([...categories, newCat]);
-    setIsAdding(false);
-    catForm.reset();
+  const onAddCategory = async (data: CategoryForm) => {
+    try {
+      await fetch('http://localhost:3000/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.title,
+          description: data.description,
+          imageUrl: data.imageUrl
+        })
+      });
+      fetchData();
+      setIsAdding(false);
+      catForm.reset();
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
   };
 
   // Event Form
   const eventForm = useForm<EventForm>({ resolver: zodResolver(eventSchema) });
-  const onAddEvent = (data: EventForm) => {
-    const newEvent = {
-      id: Date.now(),
-      ...data
-    };
-    setEvents([...events, newEvent]);
-    setIsAdding(false);
-    eventForm.reset();
+  const onAddEvent = async (data: EventForm) => {
+    try {
+      await fetch('http://localhost:3000/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nama: data.name,
+          tanggal: data.date,
+          waktu: data.description, // In frontend form, description is used for time
+          lokasi: data.location,
+          deskripsi: ""
+        })
+      });
+      fetchData();
+      setIsAdding(false);
+      eventForm.reset();
+    } catch (error) {
+      console.error("Error adding event:", error);
+    }
   };
 
   // Speaker Form
   const speakerForm = useForm<SpeakerForm>({ resolver: zodResolver(speakerSchema) });
-  const onAddSpeaker = (data: SpeakerForm) => {
-    const newSpeaker = {
-      id: Date.now(),
-      ...data
-    };
-    setSpeakers([...speakers, newSpeaker]);
-    setIsAdding(false);
-    speakerForm.reset();
+  const onAddSpeaker = async (data: SpeakerForm) => {
+    try {
+      await fetch('http://localhost:3000/speakers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nama: data.name,
+          keahlian: data.topic,
+          biodata: data.job
+        })
+      });
+      fetchData();
+      setIsAdding(false);
+      speakerForm.reset();
+    } catch (error) {
+      console.error("Error adding speaker:", error);
+    }
   };
 
   const menuItems = [
@@ -252,6 +251,52 @@ export default function P5Dashboard() {
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                 <p className="text-sm font-medium text-gray-500">Total Pembicara</p>
                 <p className="text-4xl font-bold text-[#7B2440] mt-1">{speakers.length}</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+              {/* Event Terbaru */}
+              <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-1.5 h-6 bg-[#7B2440] rounded-full"></div>
+                  <h2 className="text-xl font-bold text-gray-900">Event Terbaru</h2>
+                </div>
+                <div className="space-y-6">
+                  {events.slice(-3).reverse().map((ev) => (
+                    <div key={ev.id} className="flex justify-between items-center group">
+                      <div>
+                        <h3 className="font-bold text-gray-800 group-hover:text-[#7B2440] transition-colors">{ev.name}</h3>
+                        <p className="text-sm text-gray-400 mt-0.5">{ev.date}</p>
+                      </div>
+                      <span className="text-[10px] font-bold bg-rose-50 text-[#7B2440] px-3 py-1 rounded-full uppercase tracking-wider">
+                        {ev.name.toLowerCase().includes('seminar') ? 'Seminar' : ev.name.toLowerCase().includes('workshop') ? 'Workshop' : 'Event'}
+                      </span>
+                    </div>
+                  ))}
+                  {events.length === 0 && <p className="text-gray-400 text-sm">Belum ada event.</p>}
+                </div>
+              </div>
+
+              {/* Pembicara Terbaru */}
+              <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-1.5 h-6 bg-[#7B2440] rounded-full"></div>
+                  <h2 className="text-xl font-bold text-gray-900">Pembicara Terbaru</h2>
+                </div>
+                <div className="space-y-6">
+                  {speakers.slice(-3).reverse().map((sp) => (
+                    <div key={sp.id} className="flex items-center gap-4 group">
+                      <div className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-[#7B2440] font-bold text-sm group-hover:bg-[#7B2440] group-hover:text-white transition-all">
+                        {sp.name[0]}
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-800">{sp.name}</h3>
+                        <p className="text-xs text-gray-400 mt-0.5">{sp.topic}</p>
+                      </div>
+                    </div>
+                  ))}
+                  {speakers.length === 0 && <p className="text-gray-400 text-sm">Belum ada pembicara.</p>}
+                </div>
               </div>
             </div>
           </div>

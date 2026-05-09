@@ -1,7 +1,32 @@
 import type { Request, Response } from "express";
 import type { Event } from "../types/event.js";
 
-let events: Event[] = [];
+let events: Event[] = [
+  {
+    id: 1,
+    nama: "Mobile Development",
+    tanggal: "2025-11-25",
+    waktu: "08.00 WIB - 16.30 WIB",
+    lokasi: "Lab Kom D.1",
+    deskripsi: "Workshop pengembangan aplikasi mobile"
+  },
+  {
+    id: 2,
+    nama: "Artificial Intelligence",
+    tanggal: "2025-11-25",
+    waktu: "08.00 WIB - 16.30 WIB",
+    lokasi: "Lab Kom D.2",
+    deskripsi: "Seminar kecerdasan buatan"
+  },
+  {
+    id: 3,
+    nama: "Cyber Security",
+    tanggal: "2025-11-26",
+    waktu: "08.00 WIB - 16.30 WIB",
+    lokasi: "Lab Kom D.1",
+    deskripsi: "Pelatihan keamanan siber"
+  }
+];
 
 // 1. menampilkan semua event 
 export const getAllEvents = (req: Request, res: Response) => {
@@ -11,11 +36,11 @@ export const getAllEvents = (req: Request, res: Response) => {
 // 2. menyimpan data event baru
 export const createEvent = (req: Request, res: Response) => {
   try {
-    const { nama, tanggal, lokasi, deskripsi } = req.body;
+    const { nama, tanggal, waktu, lokasi, deskripsi } = req.body;
 
     // validasi jika ada data yang belum diisi
-    if (!nama || !tanggal || !lokasi) {
-      return res.status(400).json({ message: "Nama, tanggal, dan lokasi harus diisi" });
+    if (!nama || !tanggal || !waktu || !lokasi) {
+      return res.status(400).json({ message: "Nama, tanggal, waktu, dan lokasi harus diisi" });
     }
 
     // jika data sudah valid, buat event baru
@@ -23,6 +48,7 @@ export const createEvent = (req: Request, res: Response) => {
       id: events.length + 1,
       nama,
       tanggal,
+      waktu,
       lokasi,
       deskripsi: deskripsi || ""
     };
