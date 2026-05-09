@@ -165,19 +165,30 @@ export default function P5Dashboard() {
   // Category Form
   const catForm = useForm<CategoryForm>({ resolver: zodResolver(categorySchema) });
   const onAddCategory = async (data: CategoryForm) => {
+    // Optimistic Update for UI
+    const newCat = {
+      id: Date.now(),
+      title: data.title,
+      description: data.description,
+      imageUrl: data.imageUrl || "/assets/competition/web_design.jpg"
+    };
+    setCategories(prev => [...prev, newCat]);
+    setIsAdding(false);
+    catForm.reset();
+
     try {
-      await fetch(`${API_URL}/categories`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: data.title,
-          description: data.description,
-          imageUrl: data.imageUrl
-        })
-      });
-      fetchData();
-      setIsAdding(false);
-      catForm.reset();
+      if (API_URL) {
+        await fetch(`${API_URL}/categories`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.title,
+            description: data.description,
+            imageUrl: data.imageUrl
+          })
+        });
+        fetchData(); // Sync with backend if available
+      }
     } catch (error) {
       console.error("Error adding category:", error);
     }
@@ -186,21 +197,33 @@ export default function P5Dashboard() {
   // Event Form
   const eventForm = useForm<EventForm>({ resolver: zodResolver(eventSchema) });
   const onAddEvent = async (data: EventForm) => {
+    // Optimistic Update for UI
+    const newEv = {
+      id: Date.now(),
+      name: data.name,
+      date: data.date,
+      location: data.location,
+      description: data.description
+    };
+    setEvents(prev => [...prev, newEv]);
+    setIsAdding(false);
+    eventForm.reset();
+
     try {
-      await fetch(`${API_URL}/events`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nama: data.name,
-          tanggal: data.date,
-          waktu: data.description, // In frontend form, description is used for time
-          lokasi: data.location,
-          deskripsi: ""
-        })
-      });
-      fetchData();
-      setIsAdding(false);
-      eventForm.reset();
+      if (API_URL) {
+        await fetch(`${API_URL}/events`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nama: data.name,
+            tanggal: data.date,
+            waktu: data.description,
+            lokasi: data.location,
+            deskripsi: ""
+          })
+        });
+        fetchData();
+      }
     } catch (error) {
       console.error("Error adding event:", error);
     }
@@ -209,19 +232,30 @@ export default function P5Dashboard() {
   // Speaker Form
   const speakerForm = useForm<SpeakerForm>({ resolver: zodResolver(speakerSchema) });
   const onAddSpeaker = async (data: SpeakerForm) => {
+    // Optimistic Update for UI
+    const newSp = {
+      id: Date.now(),
+      name: data.name,
+      topic: data.topic,
+      job: data.job
+    };
+    setSpeakers(prev => [...prev, newSp]);
+    setIsAdding(false);
+    speakerForm.reset();
+
     try {
-      await fetch(`${API_URL}/speakers`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nama: data.name,
-          keahlian: data.topic,
-          biodata: data.job
-        })
-      });
-      fetchData();
-      setIsAdding(false);
-      speakerForm.reset();
+      if (API_URL) {
+        await fetch(`${API_URL}/speakers`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nama: data.name,
+            keahlian: data.topic,
+            biodata: data.job
+          })
+        });
+        fetchData();
+      }
     } catch (error) {
       console.error("Error adding speaker:", error);
     }
