@@ -1,7 +1,7 @@
 export interface Event {
     id: number;
-    title: string;
-    date: string;
-    location: string;
-    description: string;
-}
+    nama: string;
+    tanggal: string;
+    lokasi: string;
+    deskripsi?: string;
+}

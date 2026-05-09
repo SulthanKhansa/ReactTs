@@ -1,5 +1,5 @@
 {
-  "name": "react-ts-monorepo",
+  "name": "invofest-fullstack",
   "private": true,
   "workspaces": [
     "frontend",
