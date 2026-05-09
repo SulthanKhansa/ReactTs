@@ -35,48 +35,63 @@ export default function P5Dashboard() {
   const { logout } = useAuthStore();
 
   // Dynamic Data State
-  const [categories, setCategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([
+    { id: 1, title: "Workshop", description: "Pelatihan teknologi mendalam", imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800" },
+    { id: 2, title: "Seminar", description: "Talkshow inspiratif", imageUrl: "https://images.unsplash.com/photo-1475721027187-4024733924f3?w=800" }
+  ]);
 
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<any[]>([
+    { id: 1, name: "Workshop Mobile Dev", date: "2025-11-25", location: "Lab Kom D.1", description: "08:00 - 16:30" },
+    { id: 2, name: "AI Seminar", date: "2025-11-26", location: "Auditorium", description: "09:00 - 12:00" }
+  ]);
 
-  const [speakers, setSpeakers] = useState<any[]>([]);
+  const [speakers, setSpeakers] = useState<any[]>([
+    { id: 1, name: "Lhuqita Fazry", topic: "Mobile Development", job: "Founder Rumah Coding" },
+    { id: 2, name: "Danang Avan", topic: "Cyber Security", job: "Security Analyst" }
+  ]);
+
+  const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
 
   // Fetch Data from Backend
   const fetchData = async () => {
+    if (!API_URL) return; // Skip fetch if no API URL (like on Vercel production)
+    
     try {
       const [catRes, eventRes, speakerRes] = await Promise.all([
-        fetch('http://localhost:3000/categories'),
-        fetch('http://localhost:3000/events'),
-        fetch('http://localhost:3000/speakers')
+        fetch(`${API_URL}/categories`),
+        fetch(`${API_URL}/events`),
+        fetch(`${API_URL}/speakers`)
       ]);
+
+      if (!catRes.ok || !eventRes.ok || !speakerRes.ok) throw new Error("API not responding");
 
       const catData = await catRes.json();
       const eventData = await eventRes.json();
       const speakerData = await speakerRes.json();
 
-      setCategories(catData.map((c: any) => ({
+      if (catData.length > 0) setCategories(catData.map((c: any) => ({
         id: c.id,
         title: c.name,
         description: c.description,
         imageUrl: c.imageUrl
       })));
 
-      setEvents(eventData.map((e: any) => ({
+      if (eventData.length > 0) setEvents(eventData.map((e: any) => ({
         id: e.id,
         name: e.nama,
         date: e.tanggal,
         location: e.lokasi,
-        description: e.waktu // Map waktu to description in frontend
+        description: e.waktu
       })));
 
-      setSpeakers(speakerData.map((s: any) => ({
+      if (speakerData.length > 0) setSpeakers(speakerData.map((s: any) => ({
         id: s.id,
         name: s.nama,
         topic: s.keahlian,
         job: s.biodata
       })));
     } catch (error) {
-      console.error("Failed to fetch data:", error);
+      console.warn("Backend not connected, using default data.", error);
     }
   };
 
@@ -88,7 +103,7 @@ export default function P5Dashboard() {
   const catForm = useForm<CategoryForm>({ resolver: zodResolver(categorySchema) });
   const onAddCategory = async (data: CategoryForm) => {
     try {
-      await fetch('http://localhost:3000/categories', {
+      await fetch(`${API_URL}/categories`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -109,7 +124,7 @@ export default function P5Dashboard() {
   const eventForm = useForm<EventForm>({ resolver: zodResolver(eventSchema) });
   const onAddEvent = async (data: EventForm) => {
     try {
-      await fetch('http://localhost:3000/events', {
+      await fetch(`${API_URL}/events`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -132,7 +147,7 @@ export default function P5Dashboard() {
   const speakerForm = useForm<SpeakerForm>({ resolver: zodResolver(speakerSchema) });
   const onAddSpeaker = async (data: SpeakerForm) => {
     try {
-      await fetch('http://localhost:3000/speakers', {
+      await fetch(`${API_URL}/speakers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
