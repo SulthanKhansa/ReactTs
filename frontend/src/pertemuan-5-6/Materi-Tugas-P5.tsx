@@ -36,18 +36,81 @@ export default function P5Dashboard() {
 
   // Dynamic Data State
   const [categories, setCategories] = useState<any[]>([
-    { id: 1, title: "Workshop", description: "Pelatihan teknologi mendalam", imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800" },
-    { id: 2, title: "Seminar", description: "Talkshow inspiratif", imageUrl: "https://images.unsplash.com/photo-1475721027187-4024733924f3?w=800" }
+    { 
+      id: 1, 
+      title: "Poster Design Competition", 
+      description: "Poster Design Competition ini adalah kompetisi untuk menciptakan suatu karya dalam bentuk poster digital yang komunikatif dan inspiratif.",
+      imageUrl: "/assets/competition/web_design.jpg"
+    },
+    { 
+      id: 2, 
+      title: "UI/UX Design Competition", 
+      description: "UI/UX Design Competition ini adalah kompetisi untuk menciptakan dan merancang inovasi sebuah produk digital.",
+      imageUrl: "/assets/competition/ui_ux.jpg"
+    },
+    { 
+      id: 3, 
+      title: "Web Design Competition", 
+      description: "Web Design Competition ini adalah kompetisi untuk menciptakan suatu perangkat lunak berbasis website yang menggunakan desain menarik, unik, dan responsive.",
+      imageUrl: "/assets/competition/software_dev.jpg"
+    }
   ]);
 
   const [events, setEvents] = useState<any[]>([
-    { id: 1, name: "Workshop Mobile Dev", date: "2025-11-25", location: "Lab Kom D.1", description: "08:00 - 16:30" },
-    { id: 2, name: "AI Seminar", date: "2025-11-26", location: "Auditorium", description: "09:00 - 12:00" }
+    {
+      id: 1,
+      name: "Mobile Development",
+      date: "2025-11-25",
+      location: "Lab Kom D.1",
+      description: "08.00 WIB - 16.30 WIB"
+    },
+    {
+      id: 2,
+      name: "Artificial Intelligence",
+      date: "2025-11-25",
+      location: "Lab Kom D.2",
+      description: "08.00 WIB - 16.30 WIB"
+    },
+    {
+      id: 3,
+      name: "Cyber Security",
+      date: "2025-11-26",
+      location: "Lab Kom D.1",
+      description: "08.00 WIB - 16.30 WIB"
+    }
   ]);
 
   const [speakers, setSpeakers] = useState<any[]>([
-    { id: 1, name: "Lhuqita Fazry", topic: "Mobile Development", job: "Founder Rumah Coding" },
-    { id: 2, name: "Danang Avan", topic: "Cyber Security", job: "Security Analyst" }
+    {
+      id: 1,
+      name: "Dery Agung Triyadi",
+      topic: "Cloud Infrastructure Architect",
+      job: "Amazon Web Services (AWS) Indonesia"
+    },
+    {
+      id: 2,
+      name: "Sowam Habibi",
+      topic: "Customer Engineer, Data Management",
+      job: "Google Cloud Indonesia"
+    },
+    {
+      id: 3,
+      name: "Lhuqita Fazry",
+      topic: "Mobile Development",
+      job: "Developer, Founder Rumah Coding Indonesia"
+    },
+    {
+      id: 4,
+      name: "M. Dendi Purwanto",
+      topic: "Artificial Intelligence",
+      job: "Software Engineer, PT. Mayar Kernel Supernova"
+    },
+    {
+      id: 5,
+      name: "Danang Avan M",
+      topic: "Cyber Security",
+      job: "Security Analyst, Founder | Contributor TegalSec"
+    }
   ]);
 
   const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
