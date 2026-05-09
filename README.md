@@ -1,4 +1,4 @@
-# Invofest Fullstack - React & Express
+# Project Pemrograman Web 2 - React & Express
 
 Repo ini berisi kumpulan pertemuan Pemrograman Web 2
 
